@@ -1,4 +1,4 @@
-<h1>Aplicação Pokédex com React e a PokeAPI />
+<h1>Aplicação Pokédex com React e a PokeAPI>
 Pokédex
 
 Esta é uma aplicação web chamada Pokédex, desenvolvida em React, que permite aos usuários explorar e favoritar diferentes Pokémons. A aplicação utiliza a PokeAPI para obter dados sobre os Pokémons, permitindo a exibição de informações detalhadas sobre cada um, como tipo, habilidades, estatísticas e muito mais.
