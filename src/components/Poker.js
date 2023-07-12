@@ -20,8 +20,12 @@ function Poker() {
   const itemAtual = pokemon.slice(inicioItem, ultimoItem);
 
   const paginas = (pagina) => {
-      setPageAtual(pagina); 
-      setRemoveLoading(true)
+      setRemoveLoading(false)
+      setTimeout(() => {
+        setPageAtual(pagina); 
+        setRemoveLoading(true)
+      }, 300);
+   
   };
 
   // const pesquisar = (e) => {
@@ -50,7 +54,7 @@ function Poker() {
         setPokers(data.results);
         setRemoveLoading(true)
       });
-    }, 300);
+    }, 3000);
 
   }, []);
 
@@ -110,7 +114,7 @@ function Poker() {
                   onClick={() => paginas(index + 1)}
                 >
                   {index + 1}
-          
+                 
                 </li>
               ))}
           </ul>

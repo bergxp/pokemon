@@ -4,8 +4,8 @@ import loading from "../../img/loading.svg"
 
 function Loading() {
   return (
-    <div className='w-full h-96 flex justify-center items-center'>
-      <img className='w-14' src={loading} alt="Loading" />
+    <div className='w-full h-full flex justify-center items-center absolute'>
+      <img className='w-14 rounded-full' src={loading} alt="Loading" />
     </div>
   )
 }
