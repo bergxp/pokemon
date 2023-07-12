@@ -20,16 +20,16 @@ Navegue até o diretório do projeto no terminal.
 
 Execute o seguinte comando para instalar as dependências:
 
-npm install
+### npm install
 ou
 
-yarn install
+### yarn install
 Após a instalação das dependências, execute o seguinte comando para iniciar a aplicação:
 
-npm start
+### npm start
 ou
 
-yarn start
+### yarn start
 A aplicação será aberta em seu navegador padrão. Caso isso não aconteça automaticamente, acesse http://localhost:3000 no seu navegador.
 
 ## Bibliotecas utilizadas
