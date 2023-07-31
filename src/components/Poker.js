@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
 import Loading from "../pages/Load/Loading";
+import axios from "axios";
 // import { Container } from './styles';
 
 function Poker() {
   const [removeLoading, setRemoveLoading] = useState(false)
+
   const [pokers, setPokers] = useState([]);
   const [fav, setFav] = useState([]);
   const [pesquisa, setPesquisa] = useState("");
@@ -12,7 +14,7 @@ function Poker() {
   const [pageLimite] = useState(50);
 
   const pokemon = pokers.filter((p) =>
-    p.name.toLocaleLowerCase().includes(pesquisa.toLocaleLowerCase())
+    p.data.name.toLocaleLowerCase().includes(pesquisa.toLocaleLowerCase())
   );
   const ultimoItem = pageAtual * pageLimite;
   const inicioItem = ultimoItem - pageLimite;
@@ -47,16 +49,21 @@ function Poker() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch("https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0")
-      .then((r) => r.json())
-      .then((data) => {
-        setPokers(data.results);
-        setRemoveLoading(true)
-      });
-    }, 3000);
+    getPokemons()
+    setRemoveLoading(true)
 
   }, []);
+
+
+  const getPokemons = () => {
+
+    var endpoints = [];
+    for(var i = 1; i < 400; i++){
+      endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+    }
+    var response = axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokers(res));
+
+  }
 
   return (
     <>
@@ -82,13 +89,15 @@ function Poker() {
             const like = fav.includes(pokermonID);
             return (
               <li
-                className="w-64 border-2 p-5 flex justify-between bg-gradient-to-r from-gray-950 to-teal-950 rounded-lg"
+                className="relative items-start w-72 h-28yarn start p-3 border-2 flex justify-between bg-gradient-to-r from-gray-950 to-teal-950 rounded-lg"
                 key={index}
               >
-                {poker.name.charAt(0).toUpperCase() + poker.name.slice(1)}
+                {poker.data.name.charAt(0).toUpperCase() + poker.data.name.slice(1)}
+                
+                <img className="w-24 top-10 " src={poker.data.sprites.front_default} alt={poker.data.name} />
                 <button
                   onClick={() => favotiro(pokermonID)}
-                  className="cursor-pointer text-3xl "
+                  className="cursor-pointer text-3xl absolute top-14"
                 >
                   {like ? (
                     <AiFillHeart className="text-red-600" />
@@ -96,6 +105,7 @@ function Poker() {
                     <AiOutlineHeart />
                   )}
                 </button>
+                
               </li>
             );
           })}
